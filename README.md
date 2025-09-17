@@ -3,7 +3,7 @@ Exercício de Laboratório de Engenharia de Software que visa criar um sistema d
 
 1. Instalar o UV
 2. Instalar o Docker
-3. Ter instalado o Node e npm em versão recente
+3. Ter instalado o Node em versão maior ou igual a 22 e npm versão maior ou igual a 10
 
 ## Criar container do Postgres
 
@@ -79,6 +79,7 @@ E então execute
 ```sh
 npx vite
 ```
+
 
 
 
