@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const RegisterForm = () => {
   const [name, setName] = useState("");
@@ -17,8 +18,10 @@ const RegisterForm = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
     
     if (password !== confirmPassword) {
       toast({
@@ -38,10 +41,20 @@ const RegisterForm = () => {
       return;
     }
 
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: name,
+          nome: name,
+          email: email,
+          password: password
+})};
+
     setIsLoading(true);
 
     // Simulate registration process
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await fetch("http://localhost:8000/", requestOptions)
     
     toast({
       title: "Conta criada com sucesso!",
@@ -55,7 +68,7 @@ const RegisterForm = () => {
       navigate("/");
     }, 1500);
   };
-
+  
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <Card className="w-full max-w-md bg-gradient-card border-border/50 shadow-card-custom backdrop-blur-sm">

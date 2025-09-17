@@ -17,13 +17,31 @@ const LoginForm = () => {
     e.preventDefault();
     setIsLoading(true);
 
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          password: password
+})};
     // Simulate login process
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    let response = await fetch("http://localhost:8000/login",requestOptions)
+    let success = await response.text()
+    console.log("🚀 ~ handleSubmit ~ success:", success)
+   
+
     
-    toast({
+    
+    if (success === "true")
+      {toast({
       title: "Login realizado com sucesso!",
       description: "Bem-vindo de volta!",
-    });
+    });}
+    else
+    {toast({
+      title: "Login falhou ❌",
+      description: "Email ou senha incorretos",
+    });}
     
     setIsLoading(false);
   };
