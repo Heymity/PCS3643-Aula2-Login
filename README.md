@@ -3,6 +3,7 @@ Exercício de Laboratório de Engenharia de Software que visa criar um sistema d
 
 1. Instalar o UV
 2. Instalar o Docker
+3. Ter instalado o Node e npm em versão recente
 
 ## Criar container do Postgres
 
@@ -58,10 +59,26 @@ E executamos a migração:
 alembic upgrade head
 ```
 
-## Rodando a API
+# Rodando a API
 
-Primeiramente conferir que o docker com postgres está executando e então executar:
+Primeiramente conferir que o docker com postgres está executando e então, **dentro da pasta API**, executar:
 
 ```sh
 uv run fastapi dev
 ```
+
+# Rotando o Front
+
+**Dentro da pasta Frontend** execute para baixar as dependencias:
+
+```sh
+npm i
+```
+
+E então execute
+
+```sh
+npx vite
+```
+
+
