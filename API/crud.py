@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+
 from sqlalchemy import select
 from schemas import schemas
 import models 
@@ -15,9 +16,11 @@ def create_user(db: Session, user: schemas.UserCreate):
     db.refresh(db_user)
     return db_user
 
+
 def login(db: Session, user: schemas.UserCreate):
     s = select(models.User).where(models.User.email == user.email)
     return db.scalars(s).one().password == user.password
 
+  
 def get_users(db: Session):
     return db.query(models.User).all()

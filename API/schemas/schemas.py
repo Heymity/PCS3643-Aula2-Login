@@ -7,8 +7,9 @@ class UserBase(BaseModel):
         
 
 class UserCreate(UserBase):
-    password: str
+     password: str
 
+      
 class UserLogin(BaseModel):
         email: str
         password: str
@@ -19,3 +20,4 @@ class UserResponse(UserBase):
 
 class Config:
          orm_mode = True
+
