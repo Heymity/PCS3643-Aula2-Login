@@ -7,7 +7,7 @@ Exercício de Laboratório de Engenharia de Software que visa criar um sistema d
 
 ## Criar container do Postgres
 
-Executar na pasta root do projeto (Caso dê conflito pois já há uma instância rodando, executar 'docker container prune')
+Executar na pasta root do projeto (Caso dê conflito pois já há uma instância rodando, parar execução do container existente e executar 'docker container prune', lembrando de re-executar os passos do setup do projeto depois de fazer isso)
 
 ```sh
 docker run --name postgressql -e POSTGRES_PASSWORD=1234 -p 5432:5432 -d postgres
@@ -79,6 +79,7 @@ E então execute
 ```sh
 npx vite
 ```
+
 
 
 
