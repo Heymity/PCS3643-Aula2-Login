@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import NoResultFound
 
 from sqlalchemy import select
 from schemas import schemas
@@ -18,8 +19,12 @@ def create_user(db: Session, user: schemas.UserCreate):
 
 
 def login(db: Session, user: schemas.UserCreate):
-    s = select(models.User).where(models.User.email == user.email)
-    return db.scalars(s).one().password == user.password
+    try:
+        s = select(models.User).where(models.User.email == user.email)
+        return db.scalars(s).one().password == user.password
+    except (NoResultFound):
+        return False
+   
 
   
 def get_users(db: Session):
