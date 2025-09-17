@@ -35,28 +35,27 @@ Agora vamos configuarar o banco de dados caso esse ainda não tenha sido criado/
 uv run .\templates\create_db.py
 ```
 
+E executamos a migração:
+
+```sh
+uv run alembic upgrade head
+```
+
+Uma observação: Se a pasta alembic por algum motivo não existir, deve-se primeiro executar
 Com sucesso, caso o Alembic não esteja inicializado (ou seja a pasta não exista) executar:
 
 ```sh
 uv run alembic init alembic
-```
-
-Agora vamos sobreescrever o arquivo env.py com o configurado corretamente
-
-```sh
 cp -f templates/env.py alembic/env.py 
 ```
 
-Ebtão criamos a revisão:
+Caso o comando cp dê erro, apenas delete o arquivo alembic/env.py e o substitua manualmente pelo templates/env.py
+
+Caso queira mudar o banco de dados deve-se modificar o arquivo de models e então criar uma revisão e dar upgrade:
 
 ```sh
-alembic revision --autogenerate -m "Criando Tabela Users" 
-```
-
-E executamos a migração:
-
-```sh
-alembic upgrade head
+alembic revision --autogenerate -m "Criando Tabela Users"
+uv run alembic upgrade head
 ```
 
 # Rodando a API
@@ -80,5 +79,6 @@ E então execute
 ```sh
 npx vite
 ```
+
 
 
